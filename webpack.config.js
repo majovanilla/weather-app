@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/js/index.js',
   },
   output: {
     filename: 'main.js', //[name] will generate automatically all the needed files
@@ -13,10 +13,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.s[ac]ss$/i,
         use: [
           'style-loader',
           'css-loader',
+          'sass-loader',
         ],
       },
       {
@@ -38,10 +39,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.xml$/,
-        use: [
-          'xml-loader',
-        ],
+        test: /\.json$/,
+        loader: 'json-loader'
       },
     ],
   },
