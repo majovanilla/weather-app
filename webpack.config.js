@@ -6,9 +6,13 @@ module.exports = {
   entry: {
     app: './src/js/index.js',
   },
+  devServer: {
+    contentBase: './dist',
+  },
   output: {
-    filename: 'main.js', //[name] will generate automatically all the needed files
+    filename: 'main.js', // [name] will generate automatically all the needed files
     path: path.resolve(__dirname, 'dist'),
+    publicPath: 'http://localhost:8080/',
   },
   module: {
     rules: [
@@ -23,7 +27,15 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader',
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false,
+              outputPath: 'img',
+              publicPath: 'img',
+              name: '[name].[ext]',
+            },
+          },
         ],
       },
       {
@@ -40,7 +52,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
     ],
   },

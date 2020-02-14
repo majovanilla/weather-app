@@ -5,32 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../src/scss/style.css">
   <title>Weather app</title>
 </head>
 
 <body>
   <header></header>
   <section class="main">
+    <img alt="weather in the city" class="main-image">
     <div class="current">
-      <!-- <img src="#" alt="weather in the city" class="main-image"> -->
+      <p class="powered-by">Powered by Open Weather</p>
       <aside>
         <h2 class="degrees"></h2>
         <div class="data">
           <p class="city"></p>
-          <p class="date"></p>
-          <p class="time"></p>
+          <div class="date-div">
+            <p class="time"></p>
+            <p class="date"></p>
+          </div>
         </div>
         <div class="icons">
           <img class="icon"></img>
           <p class="description"></p>
         </div>
+      </aside>
     </div>
+    <aside class="more-info">
+      <div class="search">
+        <input type="search" name="Find city" id="search-bar" placeholder="Find city">
+        <button type="submit"></button>
+      </div>
+      <div class="forecast">
+        <ul class="forecast-list">
+        </ul>
+      </div>
     </aside>
-    <div class="forecast">
-      <ul class="forecast-list">
-      </ul>
-    </div>
   </section>
   <footer></footer>
   <script src="main.js"></script>
