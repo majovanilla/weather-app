@@ -27,19 +27,23 @@ const local = {
   weatherPics: {
     200: {
       day: { src: day200, alt: 'Photo by Dan Meyers on Unsplash' },
-      night: { src: night300, alt: 'Photo by Brianna Sante}llan on Unsplash' },
+      night: { src: night200, alt: 'Photo by Florian Olivo on Unsplash' },
     },
     300: {
-      day: { src: day500, alt: 'Photo by Florian Olivo on Unsplash' },
-      night: { src: night500, alt: 'Photo by Ian Espinosa on Unsplash' },
+      day: { src: day300, alt: 'Photo by Brianna Santellan on Unsplash' },
+      night: { src: night300, alt: 'Photo by Ian Espinosa on Unsplash' },
     },
     500: {
+      day: { src: day500, alt: 'Photo by Chandler Cruttenden on Unsplash' },
+      night: { src: night500, alt: 'Photo by Valentin Müller on Unsplash}' },
+    },
+    600: {
       day: { src: day600, alt: 'Photo by Chandler Cruttenden on Unsplash' },
-      night: { src: night600, alt: 'Photo by Valentin Müller on Unsplash}' },
+      night: { src: night600, alt: 'Photo by Aditya Vyas on Unsplash' },
     },
     700: {
       day: { src: day700, alt: 'Photo by Ricardo Gomez Angel on Unsplash' },
-      night: { src: night700, alt: 'Photo by Aditya Vyas on Unsplash' },
+      night: { src: night700, alt: 'Photo by Shapelined on Unsplash' },
     },
     800: {
       day: { src: day800, alt: 'Photo by Annie Spratt on Unsplash' },
@@ -57,44 +61,38 @@ const getBackground = (code) => {
   const codeString = code.toString();
   let src;
   let time;
-  // const src = code.match(/d/);
   if (hour >= 6 && hour <= 18) {
-    console.log('day if');
     time = 'day';
   } else if (hour < 6 && hour > 18) {
-    console.log('night if');
     time = 'night';
   }
 
   switch (codeString) {
-    case '804':
+    case (codeString.match(/8../) || {}).input:
       src = local.weatherPics[801][time].src;
       break;
-    case /2../:
+    case (codeString.match(/2../) || {}).input:
       src = local.weatherPics[200][time].src;
       break;
-    case /3../:
+    case (codeString.match(/3../) || {}).input:
       src = local.weatherPics[300][time].src;
       break;
-    case /5../:
-      console.log('entering 500 switch');
+    case (codeString.match(/5../) || {}).input:
       src = local.weatherPics[500].src;
       break;
-    case /6../:
+    case (codeString.match(/6../) || {}).input:
       src = local.weatherPics[600][time].src;
       break;
-    case /7../:
+    case (codeString.match(/7../) || {}).input:
       src = local.weatherPics[700][time].src;
       break;
-    case '/8.[^0]/':
-      console.log('entering 800 switch');
+    case (codeString.match(/8.[^0]/) || {}).input:
       src = local.weatherPics[800].day.src;
       break;
     default:
-      src = '../img/default.jpg';
+      src = def;
       break;
   }
-  console.log('source final return: ' + src);
   return src;
 };
 
