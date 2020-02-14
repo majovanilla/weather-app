@@ -12,7 +12,7 @@ module.exports = {
   output: {
     filename: 'main.js', // [name] will generate automatically all the needed files
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://localhost:8080/',
+    // publicPath: 'http://localhost:8080/',
   },
   module: {
     rules: [
@@ -29,12 +29,12 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {
-              esModule: false,
-              outputPath: 'img',
-              publicPath: 'img',
-              name: '[name].[ext]',
-            },
+            // options: {
+            //   esModule: false,
+            //   outputPath: 'img',
+            //   publicPath: 'img',
+            //   name: '[name].[ext]',
+            // },
           },
         ],
       },
