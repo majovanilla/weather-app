@@ -63,7 +63,7 @@ const getBackground = (code) => {
   let time;
   if (hour >= 6 && hour <= 18) {
     time = 'day';
-  } else if (hour < 6 && hour > 18) {
+  } else {
     time = 'night';
   }
 
@@ -87,7 +87,7 @@ const getBackground = (code) => {
       src = local.weatherPics[700][time].src;
       break;
     case (codeString.match(/8.[^0]/) || {}).input:
-      src = local.weatherPics[800].day.src;
+      src = local.weatherPics[800][time].src;
       break;
     default:
       src = def;

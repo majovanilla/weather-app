@@ -1,6 +1,6 @@
-import '../scss/style.scss';
-// import weatherApi from './model';
-import weatherApp from './controller';
-import renderPage from './view';
+import styles from '../scss/style.scss';
+import weatherController from './controller';
+import * as view from './view';
+// import model from './model';
 
-weatherApp({ city: 'xalapa', state: 'veracruz', unit: 'celcius' });
+weatherController();
