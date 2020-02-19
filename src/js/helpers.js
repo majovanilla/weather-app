@@ -78,7 +78,7 @@ const getBackground = (code) => {
       src = local.weatherPics[300][time].src;
       break;
     case (codeString.match(/5../) || {}).input:
-      src = local.weatherPics[500].src;
+      src = local.weatherPics[500][time].src;
       break;
     case (codeString.match(/6../) || {}).input:
       src = local.weatherPics[600][time].src;

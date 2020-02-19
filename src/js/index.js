@@ -1,6 +1,22 @@
 import styles from '../scss/style.scss';
-import weatherController from './controller';
-import * as view from './view';
-// import model from './model';
+import weatherApp from './weather';
+import * as view from './render';
+
+const weatherController = () => {
+  const searchParams = document.getElementById('search-bar');
+  const searchButton = document.querySelector('button');
+
+  view.renderPage();
+
+  const getLocation = () => {
+    const params = {
+      city: ((searchParams.value.match(/^(\w+ ?\w+[^,])/gi))[0]).toLowerCase(),
+      state: ((searchParams.value.match(/\w+[^, ]$/gi))[0]).toLowerCase(),
+    };
+    weatherApp(params);
+  };
+
+  searchButton.addEventListener('click', getLocation);
+};
 
 weatherController();
