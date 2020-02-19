@@ -1,4 +1,4 @@
-import { renderSearch } from './render';
+import { renderSearch, eventHandler } from './render';
 
 const weatherApp = (params) => {
   const { city } = params;
@@ -9,18 +9,15 @@ const weatherApp = (params) => {
 
   const setCache = (response) => {
     localStorage.setItem(`${city}`, JSON.stringify(response));
-    console.log('item saved to localstorage');
   };
 
   const getCache = () => {
     const diff = 30 * 60 * 1000;
     const cache = JSON.parse(localStorage.getItem(`${city}`));
     if (cache && (Date.now() - cache.list[0].dt * 1000) < diff) {
-      console.log('item retreived from localstorage');
       return cache;
     }
     localStorage.removeItem(JSON.stringify(`${city}`));
-    console.log('item removed from localstorage');
     return false;
   };
 
@@ -87,24 +84,19 @@ const weatherApp = (params) => {
     if (cache) {
       processData(cache);
     } else if (!cache) {
-      console.log('calling API')
       call.then((response) => response.json())
         .then((response) => {
           if (response.cod === '200') {
             setCache(response);
             processData(response);
           } else {
-            alert('Try again with another city')
+            alert('Location not found. Please search again');
+            eventHandler.notFound();
           }
         });
     }
     // .catch(alert('Please search again'));
   };
-
-  // function error(message) {
-  //   const alertMessage = alert(message);
-  //   return alertMessage;
-  // }
 
   makeCall();
 };

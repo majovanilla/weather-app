@@ -6,17 +6,16 @@
 $box-shadow: inset 5px -5px 15px rgba(0, 0, 0, 0.5);
 
 body {
-  background: url('../img/dark-background.svg') no-repeat;
-  margin: 20% auto 0;
+  background: url('../img/dark-background.svg') 0 /100% 150% no-repeat;
+  margin: auto;
 }
 
 .main {
-  width: 60%;
-  height: 400px;
+  width: 80%;
+  height: 600px;
   margin: 20% auto;
   display: flex;
   position: relative;
-  overflow: hidden;
 }
 
 .main-image {
@@ -28,10 +27,20 @@ body {
   left: 0;
 }
 
+.side-image {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  filter: blur(3px);
+}
+
 .powered-by {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 35px;
+  left: 30px;
   font-size: .5rem;
 }
 
@@ -43,12 +52,13 @@ body {
   padding: 50px 50px;
   color: white;
   position: relative;
+  overflow: hidden;
 }
 
 .current aside {
   display: flex;
   align-items: flex-end;
-    width: 100%;
+  width: 100%;
 }
 
 .degrees {
@@ -57,15 +67,18 @@ body {
 }
 
 .data {
-  display: flex;
   flex-direction: column;
-  margin-right: 30px;
+  margin-right: 10px;
 }
 
 .date-div {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   font-size: 0.8rem;
+}
+
+.date {
+  margin-left: 10px;
 }
 
 .city {
@@ -74,24 +87,32 @@ body {
   font-size: 1.8rem;
 }
 
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .description {
-  margin-top: -15px;
   font-size: 0.8rem;
-  width: 70%;
 }
 
 .icon {
   width: 50%;
 }
 
-
 /* More info section */
 
 .more-info {
+  background: rgba(0, 0, 0, 0.2);
   width: 30%;
   box-shadow: $box-shadow;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  justify-content: space-around;
 }
 
 /* Search div */
@@ -110,43 +131,48 @@ body {
 
 #search-bar {
   background: none;
-  width: 60%;
+  width: 65%;
   @extend %divisor;
   color: white;
+  font-size: 1.3rem;
+  &:focus {
+    outline: none;
+  }
 }
 
 .search button {
   position: absolute;
-  right: 0;
+  right: 30px;
   width: 20%;
   height: 100%;
   border: none;
-  background: url(../img/search-icon.png) 0 10px / 50% no-repeat;
+  background: url(../img/search-icon.png) 0 15px / 50% no-repeat;
   cursor: pointer;
 }
-
-/* Recent Search div */
 
 .hidden {
   display: none !important;
 }
 
-// .recent-search {
-//   height: 25%;
-//   @extend %divisor;
-// }
+.error {
+  border: red !important;
+}
 
 /* Forecast div */
 
 .forecast {
+  height: 50%;
   display: flex;
   padding: 20px 25px;
   @extend %divisor;
   margin-top: 0;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .temp-div {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
@@ -154,33 +180,61 @@ body {
 .forecast-list {
   padding: 0;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  flex-direction: column;
   width: 100%;
+  height: 90%;
 }
 
 .forecast-day {
   color: white;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 30px;
   align-items: center;
+  justify-items: end;
 }
 
 .day-date {
-  width: 30%;
+  align-self: center;
+  justify-self: self-start;
 }
 
 .day-icon {
-  width: 40%;
+  width: 60%;
+  align-self: center;
+}
+
+/* Switch degrees section */
+
+.switchTemp {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.switch {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding-right: 15px;
 }
 
 /* Responsiveness */
 
-@media screen and (min-width: 920px) {
-  // body {
-  //   margin: 1%x auto;
-  // }
+@media screen and (min-width: 1400px) {
+  .current {
+    padding: 50px 30px;
+  }
+  .search button {
+    right: 40px;
+    background-position: 0 5px;
+  }
+}
 
+@media screen and (max-width: 960px) {
   .current {
     padding: 50px 35px;
   }
@@ -192,35 +246,52 @@ body {
   .forecast {
     padding: 20px 15px;
   }
+
+  .search button {
+    background-position: 0 20px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .current {
+    padding: 50px 15px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-
-  // body {
-  //   margin: 10% auto;
-  // }
-
   .main {
     flex-direction: column;
-    overflow: visible;
+    height: 900px;
   }
 
   .current {
     width: 100%;
-    height: 70%;
+    height: 30%;
     padding: 40px 40px;
   }
 
-  .more-info {
-    width: 100%;
-    height: 100%;
+  .current aside {
+    justify-content: space-around;
   }
 
-  .recent-search {
-    display: none;
+  .more-info {
+    justify-content: space-around;
+    padding: 20px 40px;
+    width: 100%;
+    height: 60%;
   }
 
   .powered-by {
     top: 10px;
+  }
+
+  .search button {
+    background-position: 0 15px;
+    background-size: 20%;
+    right: 65px;
+  }
+
+  .day-icon {
+    width: 30%;
   }
 }

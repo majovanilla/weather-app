@@ -16,6 +16,7 @@ const weatherController = () => {
     weatherApp(params);
   };
 
+  view.eventHandler();
   searchButton.addEventListener('click', getLocation);
 };
 
