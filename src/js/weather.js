@@ -92,7 +92,6 @@ const weatherApp = (params) => {
           } else {
             // eslint-disable-next-line no-alert
             alert('Location not found. Please search again');
-            eventHandler.notFound();
           }
         });
     }
