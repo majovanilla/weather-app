@@ -1,4 +1,4 @@
-import { renderSearch, eventHandler } from './render';
+import { renderSearch } from './render';
 
 const weatherApp = (params) => {
   const { city } = params;
@@ -95,7 +95,6 @@ const weatherApp = (params) => {
           }
         });
     }
-    // .catch(alert('Please search again'));
   };
 
   makeCall();
