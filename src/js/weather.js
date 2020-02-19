@@ -90,6 +90,7 @@ const weatherApp = (params) => {
             setCache(response);
             processData(response);
           } else {
+            // eslint-disable-next-line no-alert
             alert('Location not found. Please search again');
             eventHandler.notFound();
           }

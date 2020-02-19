@@ -55,7 +55,6 @@ const renderSearch = (currentData, forecastData) => {
 
     Object.keys(forecastData).forEach((day) => {
       const li = document.createElement('li');
-      // const tempDiv = document.createElement('div');
       const dayTempCel = document.createElement('p');
       const dayTempFar = document.createElement('p');
       const dayImg = document.createElement('img');
@@ -71,12 +70,10 @@ const renderSearch = (currentData, forecastData) => {
       dayTempFar.classList.add('hidden');
       dayImg.classList.add('day-icon');
       dayDate.classList.add('day-date');
-      // tempDiv.classList.add('temp-div');
       li.append(dayDate);
       li.append(dayTempCel);
       li.append(dayTempFar);
       li.append(dayImg);
-      // li.append(tempDiv);
       list.append(li);
     });
   };
@@ -85,11 +82,8 @@ const renderSearch = (currentData, forecastData) => {
 };
 
 const eventHandler = () => {
-  const switchBtn = document.querySelector('.switch');
-
   const switchDegrees = (event) => {
     const allTemp = document.querySelectorAll('.day-temp');
-    console.log(allTemp);
     const button = event.target;
 
     if (button.textContent === '°F') {
@@ -100,21 +94,11 @@ const eventHandler = () => {
     DOM.farenheit.classList.toggle('hidden');
     DOM.celcius.classList.toggle('hidden');
     allTemp.forEach((temp) => {
-      // console.log(temp)
       temp.classList.toggle('hidden');
     });
   };
 
-  const notFound = () => {
-    DOM.searchBar.classList.add('error');
-    setTimeout(() => {
-      DOM.searchBar.classList.remove('error');
-    }, 1000);
-  };
-
   DOM.switchTemp.addEventListener('click', switchDegrees);
-
-  // return { notFound };
 };
 
 export { renderPage, renderSearch, eventHandler };

@@ -1,4 +1,4 @@
-import styles from '../scss/style.scss';
+import '../scss/style.scss';
 import weatherApp from './weather';
 import * as view from './render';
 
