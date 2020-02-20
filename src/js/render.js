@@ -4,7 +4,6 @@ const DOM = {
   mainBackground: document.querySelector('.main-image'),
   sideBackground: document.querySelector('.side-image'),
   forecast: document.querySelector('.forecast'),
-  switchTemp: document.querySelector('.switchTemp'),
   searchBar: document.getElementById('search-bar'),
 };
 
