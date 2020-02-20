@@ -57,45 +57,12 @@ const local = {
 };
 
 const getBackground = (code, icon = 'd') => {
-  // const hour = new Date().getHours();
-  const codeString = code.toString();
-  let src;
-  // let time;
-  // if (hour >= 6 && hour <= 18) {
-  //   time = 'day';
-  // } else {
-  //   time = 'night';
-  // }
-
   const time = icon.includes('d') ? 'day' : 'night';
 
-  switch (codeString) {
-    case (codeString.match(/8../) || {}).input:
-      src = local.weatherPics[801][time].src;
-      break;
-    case (codeString.match(/2../) || {}).input:
-      src = local.weatherPics[200][time].src;
-      break;
-    case (codeString.match(/3../) || {}).input:
-      src = local.weatherPics[300][time].src;
-      break;
-    case (codeString.match(/5../) || {}).input:
-      src = local.weatherPics[500][time].src;
-      break;
-    case (codeString.match(/6../) || {}).input:
-      src = local.weatherPics[600][time].src;
-      break;
-    case (codeString.match(/7../) || {}).input:
-      src = local.weatherPics[700][time].src;
-      break;
-    case (codeString.match(/8.[^0]/) || {}).input:
-      src = local.weatherPics[800][time].src;
-      break;
-    default:
-      src = def;
-      break;
-  }
-  return src;
+  if (code === 'default') return def;
+  if (code === 800) return local.weatherPics[800][time].src;
+
+  return local.weatherPics[Math.floor((code / 100) * 100)][time].src;
 };
 
 export { local, getBackground };

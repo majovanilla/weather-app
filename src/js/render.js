@@ -29,39 +29,23 @@ const renderSearch = (currentData, forecastData) => {
   DOM.mainBackground.src = getBackground(currentData.code, currentData.icon).toString();
   DOM.sideBackground.src = getBackground(currentData.code, currentData.icon).toString();
 
+  const getTime = () => {
+    const localTime = new Date();
+    const localTimeInEpoch = localTime.getTime();
+    const localUTCDiffInEpoch = (localTime.getTimezoneOffset()) * 60 * 1000;
+    const UTC = localTimeInEpoch + localUTCDiffInEpoch;
+    const cityTimeDiffInEpoch = (currentData.timeOffset) * 1000;
+    return new Date(UTC + cityTimeDiffInEpoch);
+  };
+
   const main = () => {
-    console.log('rendering main')
     temp.textContent = `${currentData.temp.toFixed()}${degSymbol} `;
     description.textContent = currentData.description;
     city.textContent = currentData.city;
-
-    const localTime = new Date();
-    console.log('local time: ' + localTime)
-
-    const localTimeInEpoch = localTime.getTime();
-    console.log('local time epoch: ' + localTimeInEpoch)
-
-    const localUTCDiffInEpoch = (localTime.getTimezoneOffset()) * 60 * 1000;
-    console.log('local UTC diff epoch: ' + localUTCDiffInEpoch)
-
-    const UTC = localTimeInEpoch + localUTCDiffInEpoch;
-    console.log('UTC: ' + UTC)
-
-    const cityTimeDiffInEpoch = (currentData.timeOffset) * 1000;
-    console.log('cityTimeDiffInEpoch: ' + cityTimeDiffInEpoch)
-
-    const dateFn = new Date(UTC + cityTimeDiffInEpoch);
-    console.log('dateFn: ' + dateFn)
-
-    // const dateFn = new Date((currentData.dt + currentData.time) * 1000);
-    // const dateFn = new Date(`${currentData.date} UTC`);
+    const dateFn = getTime();
     const weekDay = local.days[dateFn.getDay()];
-    console.log(weekDay)
     const month = local.months[dateFn.getMonth()];
-    console.log(month)
-    const day = dateFn.getDay();
-    console.log(day)
-    // const hour = (currentData.dt - currentData.time).getHours();
+    const day = dateFn.getDate();
     const hour = dateFn.getHours();
     const minutes = (dateFn.getMinutes() < 10 ? '0' : '') + dateFn.getMinutes();
     time.textContent = `${hour}: ${minutes} `;
