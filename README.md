@@ -1,13 +1,15 @@
 # Weather App
 
 > This web app provides the temperature of your city in °C or °F
+> Your search must include a city and the countr (two letters code) is optional
 
-[screenshot](src/img/screencast.gif)
+[screenshot](src/img/screeshot.png)
 
-This project has these features:
-  - One page menu.
-  - Dinamically changes menus without sliding.
-  - Classic design.
+More info on this project:
+  - It was created to practice API calls.
+  - It's a functional application that shows the weather.
+  - The app stores the weather information in your local storage.
+  - The cache is refreshed every 30 min if a search is performed on the city.
 
 ## Built With
 
@@ -19,11 +21,12 @@ This project has these features:
 ## Settings
 
 If you want to clone this project, run this command after:
-- Run `npm install` to have all the needed packages..
+- Run `npm install` to have all the needed packages, or:
+- Open it using the live demo link
 
 ## Live Demo
 
-[Live Demo Link](https://majovanilla.github.io/weather-app
+[Live Demo Link](https://majovanilla.github.io/weather-app)
 
 ## Author
 
