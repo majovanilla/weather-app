@@ -4,20 +4,24 @@ import * as view from './render';
 
 const weatherController = () => {
   const searchParams = document.getElementById('search-bar');
-  const searchButton = document.querySelector('button');
+  const search = document.querySelector('.switch-temp');
 
   view.renderPage();
 
-  const getLocation = () => {
+  const getLocation = (event) => {
+    console.log('get location running')
+    const degSelected = event.target.id;
+    console.log('button ' + degSelected)
     const params = {
       city: ((searchParams.value.match(/^(\w+ ?\w+[^,])/gi))[0]).toLowerCase(),
-      state: ((searchParams.value.match(/\w+[^, ]$/gi))[0]).toLowerCase(),
+      country: ((searchParams.value.match(/\w+[^, ]$/gi))[0]).toLowerCase(),
+      units: degSelected,
     };
     weatherApp(params);
   };
 
-  view.eventHandler();
-  searchButton.addEventListener('click', getLocation);
+  // view.eventHandler();
+  search.addEventListener('click', getLocation);
 };
 
 weatherController();

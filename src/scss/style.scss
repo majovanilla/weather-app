@@ -120,11 +120,15 @@ body {
 .search {
   padding: 20px 0;
   position: relative;
+  display: flex;
 }
+
+$light-gray8: rgba(221, 220, 220, 0.8);
+$dark-gray4: rgba(47, 36, 36, 0.4);
 
 %divisor {
   border: none;
-  border-bottom: 1px solid rgba(221, 220, 220, 0.8);
+  border-bottom: 1px solid $light-gray8;
   margin: 20px 20px 0;
   padding-bottom: 5px;
 }
@@ -133,22 +137,22 @@ body {
   background: none;
   width: 65%;
   @extend %divisor;
-  color: white;
+  color: $light-gray8;
   font-size: 1.3rem;
   &:focus {
     outline: none;
   }
 }
 
-.search button {
-  position: absolute;
-  right: 30px;
-  width: 20%;
-  height: 100%;
-  border: none;
-  background: url(../img/search-icon.png) 0 15px / 50% no-repeat;
-  cursor: pointer;
-}
+// .search button {
+//   position: absolute;
+//   right: 30px;
+//   width: 20%;
+//   height: 100%;
+//   border: none;
+//   background: url(../img/search-icon.png) 0 15px / 50% no-repeat;
+//   cursor: pointer;
+// }
 
 .hidden {
   display: none !important;
@@ -207,19 +211,19 @@ body {
 
 /* Switch degrees section */
 
-.switchTemp {
+.switch-temp {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+    align-items: center;
+    margin-left: -100px;
 }
 
 .switch {
-  background: none;
+  background: $dark-gray4;
   border: none;
-  color: white;
+  color: $light-gray8;
   font-size: 1.3rem;
   font-weight: bold;
-  padding-right: 15px;
+  margin-right: 10px;
 }
 
 /* Responsiveness */
@@ -228,10 +232,10 @@ body {
   .current {
     padding: 50px 30px;
   }
-  .search button {
-    right: 40px;
-    background-position: 0 5px;
-  }
+  // .search button {
+  //   right: 40px;
+  //   background-position: 0 5px;
+  // }
 }
 
 @media screen and (max-width: 960px) {
@@ -247,9 +251,9 @@ body {
     padding: 20px 15px;
   }
 
-  .search button {
-    background-position: 0 20px;
-  }
+  // .search button {
+  //   background-position: 0 20px;
+  // }
 }
 
 @media screen and (max-width: 920px) {
@@ -285,11 +289,11 @@ body {
     top: 10px;
   }
 
-  .search button {
-    background-position: 0 15px;
-    background-size: 20%;
-    right: 65px;
-  }
+  // .search button {
+  //   background-position: 0 15px;
+  //   background-size: 20%;
+  //   right: 65px;
+  // }
 
   .day-icon {
     width: 30%;

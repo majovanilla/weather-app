@@ -14,8 +14,7 @@
       <img alt="weather in the city" class="main-image">
       <p class="powered-by">Powered by Open Weather</p>
       <aside>
-        <h2 class="degrees celcius"></h2>
-        <h2 class="degrees farenheit hidden"></h2>
+        <h2 class="degrees"></h2>
         <div class="data">
           <p class="city"></p>
           <div class="date-div">
@@ -33,13 +32,14 @@
       <img alt="weather in the city" class="side-image">
       <div class="search">
         <input type="search" name="Find city" id="search-bar" placeholder="Find city" autocomplete="on">
-        <button type="button"></button>
+        <div class="switch-temp">
+          <button type="button" id="farenheit" class="switch">°F</button>
+          <button type="button" id="celcius" class="switch">°C</button>
+        </div>
       </div>
       <div class="forecast">
         <ul class="forecast-list">
         </ul>
-        <div class=" switchTemp">
-        </div>
       </div>
     </aside>
   </section>
