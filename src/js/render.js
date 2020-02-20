@@ -22,7 +22,6 @@ const renderSearch = (currentData, forecastData) => {
   const date = document.querySelector('.date');
   const icon = document.querySelector('.icon');
   const temp = document.querySelector('.degrees');
-  const switchTemp = document.querySelector('.switchTemp');
   DOM.mainBackground.src = getBackground(currentData.code, currentData.icon).toString();
   DOM.sideBackground.src = getBackground(currentData.code, currentData.icon).toString();
 
@@ -38,7 +37,7 @@ const renderSearch = (currentData, forecastData) => {
   const main = () => {
     temp.textContent = `${currentData.temp.toFixed()}${degSymbol} `;
     description.textContent = currentData.description;
-    city.textContent = currentData.city;
+    city.textContent = `${currentData.city}, ${currentData.country}`;
     const dateFn = getTime();
     const weekDay = local.days[dateFn.getDay()];
     const month = local.months[dateFn.getMonth()];
