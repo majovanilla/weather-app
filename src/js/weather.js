@@ -2,7 +2,7 @@ import { renderSearch } from './render';
 
 const weatherApp = (params) => {
   const { city, country, units } = params;
-  const url = 'http://api.openweathermap.org/data/2.5/forecast?q=';
+  const url = 'https://api.openweathermap.org/data/2.5/forecast?q=';
   const id = '&APPID=092878e572bdc25b4b5bdea6cbd439db';
   const deg = units === 'farenheit' ? '&units=imperial' : '&units=metric';
   const forecastPromise = fetch(`${url}${city},${country}${deg}${id}`, { mode: 'cors' });
