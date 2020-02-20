@@ -3,7 +3,7 @@
 > This web app provides the temperature of your city in °C or °F
 > Your search must include a city and the countr (two letters code) is optional
 
-[screenshot](src/img/screeshot.png)
+[screenshot](src/img/screenshot.png)
 
 More info on this project:
   - It was created to practice API calls.
