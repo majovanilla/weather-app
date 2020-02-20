@@ -26,33 +26,51 @@ const renderSearch = (currentData, forecastData) => {
   const icon = document.querySelector('.icon');
   const temp = document.querySelector('.degrees');
   const switchTemp = document.querySelector('.switchTemp');
-  DOM.mainBackground.src = getBackground(currentData.code).toString();
-  DOM.sideBackground.src = getBackground(currentData.code).toString();
+  DOM.mainBackground.src = getBackground(currentData.code, currentData.icon).toString();
+  DOM.sideBackground.src = getBackground(currentData.code, currentData.icon).toString();
 
   const main = () => {
     console.log('rendering main')
-    // DOM.celcius.innerHTML = `${currentData.temp.toFixed()}${degSymbol} `;
     temp.textContent = `${currentData.temp.toFixed()}${degSymbol} `;
     description.textContent = currentData.description;
     city.textContent = currentData.city;
-    const dateFn = new Date(`${currentData.date} UTC`);
-    const weekDay = local.days[new Date(`${currentData.date} UTC`).getDay()];
-    const month = local.months[new Date(`${currentData.date} UTC`).getMonth()];
-    const day = new Date(`${currentData.date} UTC`).getDay();
+
+    const localTime = new Date();
+    console.log('local time: ' + localTime)
+
+    const localTimeInEpoch = localTime.getTime();
+    console.log('local time epoch: ' + localTimeInEpoch)
+
+    const localUTCDiffInEpoch = (localTime.getTimezoneOffset()) * 60 * 1000;
+    console.log('local UTC diff epoch: ' + localUTCDiffInEpoch)
+
+    const UTC = localTimeInEpoch + localUTCDiffInEpoch;
+    console.log('UTC: ' + UTC)
+
+    const cityTimeDiffInEpoch = (currentData.timeOffset) * 1000;
+    console.log('cityTimeDiffInEpoch: ' + cityTimeDiffInEpoch)
+
+    const dateFn = new Date(UTC + cityTimeDiffInEpoch);
+    console.log('dateFn: ' + dateFn)
+
+    // const dateFn = new Date((currentData.dt + currentData.time) * 1000);
+    // const dateFn = new Date(`${currentData.date} UTC`);
+    const weekDay = local.days[dateFn.getDay()];
+    console.log(weekDay)
+    const month = local.months[dateFn.getMonth()];
+    console.log(month)
+    const day = dateFn.getDay();
+    console.log(day)
+    // const hour = (currentData.dt - currentData.time).getHours();
     const hour = dateFn.getHours();
     const minutes = (dateFn.getMinutes() < 10 ? '0' : '') + dateFn.getMinutes();
-    time.innerHTML = `${hour}: ${minutes} `;
-    date.innerHTML = `${weekDay}, ${month} ${day} `;
+    time.textContent = `${hour}: ${minutes} `;
+    date.textContent = `${weekDay}, ${month} ${day} `;
     icon.src = `http://openweathermap.org/img/wn/${currentData.icon}@2x.png`;
   };
 
   const aside = () => {
     console.log('rendering aside')
-    // const switchBtn = document.createElement('button');
-    // switchBtn.classList.add('switch');
-    // switchBtn.innerHTML = '°F';
-    // switchTemp.innerHTML = '';
-    // switchTemp.append(switchBtn);
     DOM.forecast.classList.remove('hidden');
     const list = document.querySelector('.forecast-list');
     list.innerHTML = '';
@@ -60,27 +78,18 @@ const renderSearch = (currentData, forecastData) => {
     Object.keys(forecastData).forEach((day) => {
       const li = document.createElement('li');
       const temp = document.createElement('p');
-      // const dayTempCel = document.createElement('p');
-      // const dayTempFar = document.createElement('p');
       const dayImg = document.createElement('img');
       const asideDate = local.days[new Date(`${forecastData[day].date} UTC`).getDay()];
       const dayDate = document.createElement('p');
       dayDate.textContent = asideDate;
       temp.innerHTML = forecastData[day].temp.toFixed() + degSymbol;
-      // dayTempCel.innerHTML = forecastData[day].cTemp.toFixed() + degSymbol;
-      // dayTempFar.innerHTML = forecastData[day].fTemp.toFixed() + degSymbol;
       dayImg.src = `http://openweathermap.org/img/wn/${forecastData[day].icon}@2x.png`;
       li.classList.add('forecast-day');
       temp.classList.add('day-temp');
-      // dayTempCel.classList.add('day-temp');
-      // dayTempFar.classList.add('day-temp');
-      // dayTempFar.classList.add('hidden');
       dayImg.classList.add('day-icon');
       dayDate.classList.add('day-date');
       li.append(dayDate);
       li.append(temp);
-      // li.append(dayTempCel);
-      // li.append(dayTempFar);
       li.append(dayImg);
       list.append(li);
     });

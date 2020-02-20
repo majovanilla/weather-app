@@ -43,6 +43,7 @@ const weatherApp = (params) => {
     const currentData = {
       dt: data.list[0].dt,
       date: data.list[0].dt_txt,
+      timeOffset: data.city.timezone,
       description: data.list[0].weather[0].description,
       city: data.city.name,
       country: data.city.country,

@@ -56,16 +56,18 @@ const local = {
   },
 };
 
-const getBackground = (code) => {
-  const hour = new Date().getHours();
+const getBackground = (code, icon = 'd') => {
+  // const hour = new Date().getHours();
   const codeString = code.toString();
   let src;
-  let time;
-  if (hour >= 6 && hour <= 18) {
-    time = 'day';
-  } else {
-    time = 'night';
-  }
+  // let time;
+  // if (hour >= 6 && hour <= 18) {
+  //   time = 'day';
+  // } else {
+  //   time = 'night';
+  // }
+
+  const time = icon.includes('d') ? 'day' : 'night';
 
   switch (codeString) {
     case (codeString.match(/8../) || {}).input:
