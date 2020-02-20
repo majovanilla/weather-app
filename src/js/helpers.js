@@ -61,8 +61,12 @@ const getBackground = (code, icon = 'd') => {
 
   if (code === 'default') return def;
   if (code === 800) return local.weatherPics[800][time].src;
-
-  return local.weatherPics[Math.floor((code / 100) * 100)][time].src;
+  if (code.toString().match(/8.[^0]/)) return local.weatherPics[801][time].src;
+  return local.weatherPics[Math.floor(code / 100) * 100][time].src;
 };
 
-export { local, getBackground };
+const cleanForm = (form) => {
+  form.reset();
+};
+
+export { local, getBackground, cleanForm };

@@ -121,6 +121,7 @@ body {
   padding: 20px 0;
   position: relative;
   display: flex;
+  align-items: baseline;
 }
 
 $light-gray8: rgba(221, 220, 220, 0.8);
@@ -135,7 +136,7 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
 
 #search-bar {
   background: none;
-  width: 65%;
+  width: 80%;
   @extend %divisor;
   color: $light-gray8;
   font-size: 1.3rem;
@@ -143,16 +144,6 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
     outline: none;
   }
 }
-
-// .search button {
-//   position: absolute;
-//   right: 30px;
-//   width: 20%;
-//   height: 100%;
-//   border: none;
-//   background: url(../img/search-icon.png) 0 15px / 50% no-repeat;
-//   cursor: pointer;
-// }
 
 .hidden {
   display: none !important;
@@ -213,17 +204,14 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
 
 .switch-temp {
   display: flex;
-    align-items: center;
-    margin-left: -100px;
+  margin-left: -85px;
 }
 
 .switch {
-  background: $dark-gray4;
+  background: none;
   border: none;
   color: $light-gray8;
-  font-size: 1.3rem;
   font-weight: bold;
-  margin-right: 10px;
 }
 
 /* Responsiveness */
@@ -232,10 +220,6 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
   .current {
     padding: 50px 30px;
   }
-  // .search button {
-  //   right: 40px;
-  //   background-position: 0 5px;
-  // }
 }
 
 @media screen and (max-width: 960px) {
@@ -250,10 +234,6 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
   .forecast {
     padding: 20px 15px;
   }
-
-  // .search button {
-  //   background-position: 0 20px;
-  // }
 }
 
 @media screen and (max-width: 920px) {
@@ -288,12 +268,6 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
   .powered-by {
     top: 10px;
   }
-
-  // .search button {
-  //   background-position: 0 15px;
-  //   background-size: 20%;
-  //   right: 65px;
-  // }
 
   .day-icon {
     width: 30%;

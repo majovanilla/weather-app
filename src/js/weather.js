@@ -5,16 +5,9 @@ const weatherApp = (params) => {
   const url = 'http://api.openweathermap.org/data/2.5/forecast?q=';
   const id = '&APPID=092878e572bdc25b4b5bdea6cbd439db';
   const deg = units === 'farenheit' ? '&units=imperial' : '&units=metric';
-  const far = '&units=imperial';
-  const cel = '&units=metric';
-  // const lang = '&lang={lang}'
   const forecastPromise = fetch(`${url}${city},${country}${deg}${id}`, { mode: 'cors' });
-  // const forecastPromiseCel = fetch(`${url}${city},${country}${cel}${id}`, { mode: 'cors' });
-  // const forecastPromiseFar = fetch(`${url}${city},${country}${far}${id}`, { mode: 'cors' });
 
   const setCache = (response) => {
-    console.log('set cache')
-    console.log(response)
     localStorage.setItem(`${city}-${units}`, JSON.stringify(response));
   };
 
@@ -22,24 +15,13 @@ const weatherApp = (params) => {
     const diff = 30 * 60 * 1000;
     const cache = JSON.parse(localStorage.getItem(`${city}-${units}`));
     if (cache && (Date.now() - cache.list[0].dt * 1000) < diff) {
-      console.log('get cache')
-      console.log(cache)
       return cache;
     }
     localStorage.removeItem(JSON.stringify(`${city}-${units}`));
-    console.log('delete cache')
-    console.log(`${city}-${units}`)
     return false;
   };
 
-  // const checkUnitCall = (units) => {
-  //   console.log('cheching units: ')
-  //   console.log(units)
-  //   return units === 'farenheit' ? forecastPromiseFar : forecastPromiseCel;
-  // };
-
   const processData = (data) => {
-    console.log('processData')
     const currentData = {
       dt: data.list[0].dt,
       date: data.list[0].dt_txt,
@@ -89,13 +71,10 @@ const weatherApp = (params) => {
   const makeCall = () => {
     const cache = getCache();
     const call = forecastPromise;
-    // const call = checkUnitCall();
 
     if (cache) {
       processData(cache);
     } else {
-      console.log('making call')
-      console.log(call)
       call.then((response) => response.json())
         .then((response) => {
           if (response.cod === '200') {

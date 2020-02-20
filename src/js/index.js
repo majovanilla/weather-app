@@ -9,9 +9,7 @@ const weatherController = () => {
   view.renderPage();
 
   const getLocation = (event) => {
-    console.log('get location running')
     const degSelected = event.target.id;
-    console.log('button ' + degSelected)
     const params = {
       city: ((searchParams.value.match(/^(\w+ ?\w+[^,])/gi))[0]).toLowerCase(),
       country: ((searchParams.value.match(/\w+[^, ]$/gi))[0]).toLowerCase(),
@@ -19,8 +17,6 @@ const weatherController = () => {
     };
     weatherApp(params);
   };
-
-  // view.eventHandler();
   search.addEventListener('click', getLocation);
 };
 
