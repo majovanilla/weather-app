@@ -140,6 +140,7 @@ $dark-gray4: rgba(47, 36, 36, 0.4);
   @extend %divisor;
   color: $light-gray8;
   font-size: 1.3rem;
+  
   &:focus {
     outline: none;
   }
