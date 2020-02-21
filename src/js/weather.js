@@ -5,7 +5,6 @@ const weatherApp = (params) => {
   const url = 'https://api.openweathermap.org/data/2.5/forecast?q=';
   const id = '&APPID=092878e572bdc25b4b5bdea6cbd439db';
   const deg = units === 'farenheit' ? '&units=imperial' : '&units=metric';
-  const forecastPromise = fetch(`${url}${city},${country}${deg}${id}`, { mode: 'cors' });
 
   const setCache = (response) => {
     localStorage.setItem(`${city}-${units}`, JSON.stringify(response));
@@ -14,9 +13,6 @@ const weatherApp = (params) => {
   const getCache = () => {
     const diff = 30 * 60 * 1000;
     const cache = JSON.parse(localStorage.getItem(`${city}-${units}`));
-    console.log(Date.now())
-    // console.log(cache.list[0].dt * 1000)
-    // console.log(Date.now() - cache.list[0].dt * 1000)
     if (cache && Date.now() - cache.list[0].dt * 1000 <= diff) {
       return cache;
     }
@@ -73,25 +69,22 @@ const weatherApp = (params) => {
 
   const makeCall = () => {
     const cache = getCache();
-    console.log('get cache returns:')
-    console.log(cache)
-    const call = forecastPromise;
 
     if (cache) {
       processData(cache);
-      console.log('using cache')
     } else {
-      console.log('calling API')
-      call.then((response) => response.json())
-        .then((response) => {
-          if (response.cod === '200') {
-            setCache(response);
-            processData(response);
-          } else {
-            // eslint-disable-next-line no-alert
-            alert('Location not found. Please search again');
-          }
-        });
+      const forecastPromise = fetch(`${url}${city},${country}${deg}${id}`, { mode: 'cors' });
+      forecastPromise.then((response) => {
+        if (response.ok) {
+          response.json().then((resp) => {
+            setCache(resp);
+            processData(resp);
+          });
+        } else {
+          // eslint-disable-next-line no-alert
+          alert('Location not found. Please search again');
+        }
+      });
     }
   };
 
