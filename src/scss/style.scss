@@ -1,0 +1,276 @@
+@import 'reset';
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+/* Main section */
+
+$box-shadow: inset 5px -5px 15px rgba(0, 0, 0, 0.5);
+
+body {
+  background: url('../img/dark-background.svg') 0 /100% 150% no-repeat;
+  margin: auto;
+}
+
+.main {
+  width: 80%;
+  height: 600px;
+  margin: 20% auto;
+  display: flex;
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+.side-image {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  filter: blur(3px);
+}
+
+.powered-by {
+  position: absolute;
+  top: 35px;
+  left: 30px;
+  font-size: .5rem;
+}
+
+.current {
+  width: 70%;
+  box-shadow: $box-shadow;
+  display: flex;
+  align-items: flex-end;
+  padding: 50px 50px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.current aside {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.degrees {
+  font-size: 3rem;
+  margin-right: 30px;
+}
+
+.data {
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.date-div {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+}
+
+.date {
+  margin-left: 10px;
+}
+
+.city {
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 1.8rem;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  font-size: 0.8rem;
+}
+
+.icon {
+  width: 50%;
+}
+
+/* More info section */
+
+.more-info {
+  background: rgba(0, 0, 0, 0.2);
+  width: 30%;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  justify-content: space-around;
+}
+
+/* Search div */
+
+.search {
+  padding: 20px 0;
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+
+$light-gray8: rgba(221, 220, 220, 0.8);
+$dark-gray4: rgba(47, 36, 36, 0.4);
+
+%divisor {
+  border: none;
+  border-bottom: 1px solid $light-gray8;
+  margin: 20px 20px 0;
+  padding-bottom: 5px;
+}
+
+#search-bar {
+  background: none;
+  width: 80%;
+  @extend %divisor;
+  color: $light-gray8;
+  font-size: 1.3rem;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.error {
+  border: red !important;
+}
+
+/* Forecast div */
+
+.forecast {
+  height: 50%;
+  display: flex;
+  padding: 20px 25px;
+  @extend %divisor;
+  margin-top: 0;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.temp-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.forecast-list {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  height: 90%;
+}
+
+.forecast-day {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 30px;
+  align-items: center;
+  justify-items: end;
+}
+
+.day-date {
+  align-self: center;
+  justify-self: self-start;
+}
+
+.day-icon {
+  width: 60%;
+  align-self: center;
+}
+
+/* Switch degrees section */
+
+.switch-temp {
+  display: flex;
+  margin-left: -85px;
+}
+
+.switch {
+  background: none;
+  border: none;
+  color: $light-gray8;
+  font-weight: bold;
+}
+
+/* Responsiveness */
+
+@media screen and (min-width: 1400px) {
+  .current {
+    padding: 50px 30px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .current {
+    padding: 50px 35px;
+  }
+
+  .degrees {
+    margin-right: 20px;
+  }
+
+  .forecast {
+    padding: 20px 15px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .current {
+    padding: 50px 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    height: 900px;
+  }
+
+  .current {
+    width: 100%;
+    height: 30%;
+    padding: 40px 40px;
+  }
+
+  .current aside {
+    justify-content: space-around;
+  }
+
+  .more-info {
+    justify-content: space-around;
+    padding: 20px 40px;
+    width: 100%;
+    height: 60%;
+  }
+
+  .powered-by {
+    top: 10px;
+  }
+
+  .day-icon {
+    width: 30%;
+  }
+}

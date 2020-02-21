@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Weather app</title>
+</head>
+
+<body>
+  <section class="main">
+    <div class="current">
+      <img alt="weather in the city" class="main-image">
+      <p class="powered-by">Powered by Open Weather</p>
+      <aside>
+        <h2 class="degrees"></h2>
+        <div class="data">
+          <p class="city"></p>
+          <div class="date-div">
+            <p class="time"></p>
+            <p class="date"></p>
+          </div>
+        </div>
+        <div class="icons">
+          <img class="icon"></img>
+          <p class="description"></p>
+        </div>
+      </aside>
+    </div>
+    <aside class="more-info">
+      <img alt="weather in the city" class="side-image">
+      <div class="search">
+        <input type="search" name="Find city" id="search-bar" placeholder="Mexico, MX" onfocus="this.value=''">
+        <div class="switch-temp">
+          <button type="button" id="farenheit" class="switch">°F</button>
+          <button type="button" id="celcius" class="switch">°C</button>
+        </div>
+      </div>
+      <div class="forecast">
+        <ul class="forecast-list">
+        </ul>
+      </div>
+    </aside>
+  </section>
+  <footer></footer>
+  <script src="main.js"></script>
+</body>
+
+</html>
