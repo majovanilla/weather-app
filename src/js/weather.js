@@ -14,7 +14,10 @@ const weatherApp = (params) => {
   const getCache = () => {
     const diff = 30 * 60 * 1000;
     const cache = JSON.parse(localStorage.getItem(`${city}-${units}`));
-    if (cache && (Date.now() - cache.list[0].dt * 1000) < diff) {
+    console.log(Date.now())
+    // console.log(cache.list[0].dt * 1000)
+    // console.log(Date.now() - cache.list[0].dt * 1000)
+    if (cache && Date.now() - cache.list[0].dt * 1000 <= diff) {
       return cache;
     }
     localStorage.removeItem(JSON.stringify(`${city}-${units}`));
@@ -70,11 +73,15 @@ const weatherApp = (params) => {
 
   const makeCall = () => {
     const cache = getCache();
+    console.log('get cache returns:')
+    console.log(cache)
     const call = forecastPromise;
 
     if (cache) {
       processData(cache);
+      console.log('using cache')
     } else {
+      console.log('calling API')
       call.then((response) => response.json())
         .then((response) => {
           if (response.cod === '200') {
